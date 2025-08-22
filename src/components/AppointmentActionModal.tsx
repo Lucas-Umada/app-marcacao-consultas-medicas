@@ -1,15 +1,17 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import { Modal, ViewStyle } from 'react-native';
-import { Button, Input } from 'react-native-elements';
-import theme from '../styles/theme';
+import React from "react";
+import styled from "styled-components/native";
+import { Modal, ViewStyle } from "react-native";
+import { Button, Input } from "react-native-elements";
+import theme from "../styles/theme";
 
+// Propriedades esperadas pelo componente do modal de ação de consulta
 interface AppointmentActionModalProps {
-  visible: boolean;
-  onClose: () => void;
-  onConfirm: (reason?: string) => void;
-  actionType: 'confirm' | 'cancel';
+  visible: boolean; // Controla a visibilidade do modal
+  onClose: () => void; // Função chamada ao fechar o modal
+  onConfirm: (reason?: string) => void; // Função chamada ao confirmar a ação (com motivo opcional)
+  actionType: "confirm" | "cancel"; // Tipo de ação: confirmar ou cancelar
   appointmentDetails: {
+    // Detalhes da consulta
     patientName: string;
     doctorName: string;
     date: string;
@@ -18,6 +20,7 @@ interface AppointmentActionModalProps {
   };
 }
 
+// Componente principal do modal de ação de consulta
 const AppointmentActionModal: React.FC<AppointmentActionModalProps> = ({
   visible,
   onClose,
@@ -25,20 +28,24 @@ const AppointmentActionModal: React.FC<AppointmentActionModalProps> = ({
   actionType,
   appointmentDetails,
 }) => {
-  const [reason, setReason] = React.useState('');
+  // Estado para armazenar o motivo do cancelamento (caso seja necessário)
+  const [reason, setReason] = React.useState("");
 
+  // Função chamada ao confirmar a ação
   const handleConfirm = () => {
-    onConfirm(reason.trim() || undefined);
-    setReason('');
-    onClose();
+    onConfirm(reason.trim() || undefined); // Envia o motivo (se houver) para a função de confirmação
+    setReason(""); // Limpa o campo motivo
+    onClose(); // Fecha o modal
   };
 
+  // Função chamada ao fechar o modal
   const handleClose = () => {
-    setReason('');
-    onClose();
+    setReason(""); // Limpa o campo motivo
+    onClose(); // Fecha o modal
   };
 
-  const isCancel = actionType === 'cancel';
+  // Verifica se a ação é de cancelamento
+  const isCancel = actionType === "cancel";
 
   return (
     <Modal
@@ -51,11 +58,12 @@ const AppointmentActionModal: React.FC<AppointmentActionModalProps> = ({
         <ModalContainer>
           <Header>
             <Title>
-              {isCancel ? 'Cancelar Consulta' : 'Confirmar Consulta'}
+              {isCancel ? "Cancelar Consulta" : "Confirmar Consulta"}
             </Title>
           </Header>
 
           <Content>
+            {/* Exibe informações da consulta */}
             <AppointmentInfo>
               <InfoRow>
                 <InfoLabel>Paciente:</InfoLabel>
@@ -71,10 +79,13 @@ const AppointmentActionModal: React.FC<AppointmentActionModalProps> = ({
               </InfoRow>
               <InfoRow>
                 <InfoLabel>Data/Hora:</InfoLabel>
-                <InfoValue>{appointmentDetails.date} às {appointmentDetails.time}</InfoValue>
+                <InfoValue>
+                  {appointmentDetails.date} às {appointmentDetails.time}
+                </InfoValue>
               </InfoRow>
             </AppointmentInfo>
 
+            {/* Se for cancelamento, exibe campo para motivo */}
             {isCancel && (
               <ReasonContainer>
                 <Input
@@ -89,14 +100,15 @@ const AppointmentActionModal: React.FC<AppointmentActionModalProps> = ({
               </ReasonContainer>
             )}
 
+            {/* Mensagem de confirmação/cancelamento */}
             <ConfirmationText isCancel={isCancel}>
-              {isCancel 
-                ? 'Tem certeza que deseja cancelar esta consulta?'
-                : 'Tem certeza que deseja confirmar esta consulta?'
-              }
+              {isCancel
+                ? "Tem certeza que deseja cancelar esta consulta?"
+                : "Tem certeza que deseja confirmar esta consulta?"}
             </ConfirmationText>
           </Content>
 
+          {/* Botões de ação */}
           <ButtonContainer>
             <Button
               title="Cancelar"
@@ -105,12 +117,16 @@ const AppointmentActionModal: React.FC<AppointmentActionModalProps> = ({
               buttonStyle={styles.cancelButtonStyle}
             />
             <Button
-              title={isCancel ? 'Confirmar Cancelamento' : 'Confirmar'}
+              title={isCancel ? "Confirmar Cancelamento" : "Confirmar"}
               onPress={handleConfirm}
               containerStyle={styles.confirmButton as ViewStyle}
               buttonStyle={[
                 styles.confirmButtonStyle,
-                { backgroundColor: isCancel ? theme.colors.error : theme.colors.success }
+                {
+                  backgroundColor: isCancel
+                    ? theme.colors.error
+                    : theme.colors.success,
+                },
               ]}
             />
           </ButtonContainer>
@@ -120,6 +136,7 @@ const AppointmentActionModal: React.FC<AppointmentActionModalProps> = ({
   );
 };
 
+// Estilos para os componentes do modal
 const styles = {
   reasonInput: {
     marginBottom: 10,
@@ -141,6 +158,7 @@ const styles = {
   },
 };
 
+// Estilização dos componentes usando styled-components
 const Overlay = styled.View`
   flex: 1;
   background-color: rgba(0, 0, 0, 0.5);
@@ -211,7 +229,8 @@ const ReasonContainer = styled.View`
 
 const ConfirmationText = styled.Text<{ isCancel: boolean }>`
   font-size: 16px;
-  color: ${(props: { isCancel: boolean }) => props.isCancel ? theme.colors.error : theme.colors.success};
+  color: ${(props: { isCancel: boolean }) =>
+    props.isCancel ? theme.colors.error : theme.colors.success};
   text-align: center;
   margin-bottom: 20px;
   font-weight: 500;
