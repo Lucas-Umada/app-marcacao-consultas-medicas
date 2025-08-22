@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// Tipagem de uma consulta
 interface Appointment {
   id: string;
   patientId: string;
@@ -12,28 +13,33 @@ interface Appointment {
   status: 'pending' | 'confirmed' | 'cancelled';
 }
 
+// Tipagem das estatísticas retornadas
 export interface Statistics {
-  totalAppointments: number;
-  confirmedAppointments: number;
-  pendingAppointments: number;
-  cancelledAppointments: number;
-  totalPatients: number;
-  totalDoctors: number;
-  specialties: { [key: string]: number };
-  appointmentsByMonth: { [key: string]: number };
+  totalAppointments: number; // Total de consultas
+  confirmedAppointments: number; // Consultas confirmadas
+  pendingAppointments: number; // Consultas pendentes
+  cancelledAppointments: number; // Consultas canceladas
+  totalPatients: number; // Total de pacientes únicos
+  totalDoctors: number; // Total de médicos únicos
+  specialties: { [key: string]: number }; // Quantidade de consultas por especialidade
+  appointmentsByMonth: { [key: string]: number }; // Consultas por mês
   statusPercentages: {
     confirmed: number;
     pending: number;
     cancelled: number;
-  };
+  }; // Percentual de cada status
 }
 
+// Serviço de estatísticas da aplicação
 export const statisticsService = {
+  // Estatísticas gerais do sistema (admin)
   async getGeneralStatistics(): Promise<Statistics> {
     try {
+      // Busca todas as consultas do armazenamento
       const appointmentsData = await AsyncStorage.getItem('@MedicalApp:appointments');
       const appointments: Appointment[] = appointmentsData ? JSON.parse(appointmentsData) : [];
       
+      // Busca todos os usuários registrados
       const registeredUsersData = await AsyncStorage.getItem('@MedicalApp:registeredUsers');
       const registeredUsers = registeredUsersData ? JSON.parse(registeredUsersData) : [];
 
@@ -51,7 +57,7 @@ export const statisticsService = {
       const uniqueDoctors = new Set(appointments.map(a => a.doctorId));
       const totalDoctors = uniqueDoctors.size;
 
-      // Especialidades mais acessadas
+      // Contagem de consultas por especialidade
       const specialties: { [key: string]: number } = {};
       appointments.forEach(appointment => {
         if (specialties[appointment.specialty]) {
@@ -61,7 +67,7 @@ export const statisticsService = {
         }
       });
 
-      // Consultas por mês
+      // Consultas agrupadas por mês/ano
       const appointmentsByMonth: { [key: string]: number } = {};
       appointments.forEach(appointment => {
         try {
@@ -77,13 +83,14 @@ export const statisticsService = {
         }
       });
 
-      // Percentuais de status
+      // Percentuais de cada status
       const statusPercentages = {
         confirmed: totalAppointments > 0 ? (confirmedAppointments / totalAppointments) * 100 : 0,
         pending: totalAppointments > 0 ? (pendingAppointments / totalAppointments) * 100 : 0,
         cancelled: totalAppointments > 0 ? (cancelledAppointments / totalAppointments) * 100 : 0,
       };
 
+      // Retorna objeto com todas as estatísticas
       return {
         totalAppointments,
         confirmedAppointments,
@@ -101,27 +108,34 @@ export const statisticsService = {
     }
   },
 
+  // Estatísticas específicas de um médico
   async getDoctorStatistics(doctorId: string): Promise<Partial<Statistics>> {
     try {
+      // Busca todas as consultas do armazenamento
       const appointmentsData = await AsyncStorage.getItem('@MedicalApp:appointments');
       const allAppointments: Appointment[] = appointmentsData ? JSON.parse(appointmentsData) : [];
       
+      // Filtra apenas consultas do médico informado
       const doctorAppointments = allAppointments.filter(a => a.doctorId === doctorId);
 
+      // Estatísticas básicas do médico
       const totalAppointments = doctorAppointments.length;
       const confirmedAppointments = doctorAppointments.filter(a => a.status === 'confirmed').length;
       const pendingAppointments = doctorAppointments.filter(a => a.status === 'pending').length;
       const cancelledAppointments = doctorAppointments.filter(a => a.status === 'cancelled').length;
 
+      // Contagem de pacientes únicos atendidos pelo médico
       const uniquePatients = new Set(doctorAppointments.map(a => a.patientId));
       const totalPatients = uniquePatients.size;
 
+      // Percentuais de cada status
       const statusPercentages = {
         confirmed: totalAppointments > 0 ? (confirmedAppointments / totalAppointments) * 100 : 0,
         pending: totalAppointments > 0 ? (pendingAppointments / totalAppointments) * 100 : 0,
         cancelled: totalAppointments > 0 ? (cancelledAppointments / totalAppointments) * 100 : 0,
       };
 
+      // Retorna objeto parcial de estatísticas do médico
       return {
         totalAppointments,
         confirmedAppointments,
@@ -136,18 +150,23 @@ export const statisticsService = {
     }
   },
 
+  // Estatísticas específicas de um paciente
   async getPatientStatistics(patientId: string): Promise<Partial<Statistics>> {
     try {
+      // Busca todas as consultas do armazenamento
       const appointmentsData = await AsyncStorage.getItem('@MedicalApp:appointments');
       const allAppointments: Appointment[] = appointmentsData ? JSON.parse(appointmentsData) : [];
       
+      // Filtra apenas consultas do paciente informado
       const patientAppointments = allAppointments.filter(a => a.patientId === patientId);
 
+      // Estatísticas básicas do paciente
       const totalAppointments = patientAppointments.length;
       const confirmedAppointments = patientAppointments.filter(a => a.status === 'confirmed').length;
       const pendingAppointments = patientAppointments.filter(a => a.status === 'pending').length;
       const cancelledAppointments = patientAppointments.filter(a => a.status === 'cancelled').length;
 
+      // Contagem de consultas por especialidade
       const specialties: { [key: string]: number } = {};
       patientAppointments.forEach(appointment => {
         if (specialties[appointment.specialty]) {
@@ -157,15 +176,18 @@ export const statisticsService = {
         }
       });
 
+      // Contagem de médicos únicos que atenderam o paciente
       const uniqueDoctors = new Set(patientAppointments.map(a => a.doctorId));
       const totalDoctors = uniqueDoctors.size;
 
+      // Percentuais de cada status
       const statusPercentages = {
         confirmed: totalAppointments > 0 ? (confirmedAppointments / totalAppointments) * 100 : 0,
         pending: totalAppointments > 0 ? (pendingAppointments / totalAppointments) * 100 : 0,
         cancelled: totalAppointments > 0 ? (cancelledAppointments / totalAppointments) * 100 : 0,
       };
 
+      // Retorna objeto parcial de estatísticas do paciente
       return {
         totalAppointments,
         confirmedAppointments,
@@ -178,6 +200,8 @@ export const statisticsService = {
     } catch (error) {
       console.error('Erro ao calcular estatísticas do paciente:', error);
       throw error;
-    }
+
+
+  },    }    }
   },
 };
