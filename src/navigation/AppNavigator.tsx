@@ -9,7 +9,7 @@ import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import HomeScreen from "../screens/HomeScreen";
 import CreateAppointmentScreen from "../screens/CreateAppointmentScreen/index";
-import ProfileScreen from "../screens/ProfileScreen";
+import ProfileScreen from "../screens/ProfileScreen/index";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import AdminDashboardScreen from "../screens/AdminDashboardScreen";
 import DoctorDashboardScreen from "../screens/DoctorDashboardScreen";
