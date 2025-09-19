@@ -8,7 +8,7 @@ import { RootStackParamList } from "../types/navigation";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import HomeScreen from "../screens/HomeScreen";
-import CreateAppointmentScreen from "../screens/CreateAppointmentScreen";
+import CreateAppointmentScreen from "../screens/CreateAppointmentScreen/index";
 import ProfileScreen from "../screens/ProfileScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import AdminDashboardScreen from "../screens/AdminDashboardScreen";

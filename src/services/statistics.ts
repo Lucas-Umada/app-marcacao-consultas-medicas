@@ -200,8 +200,6 @@ export const statisticsService = {
     } catch (error) {
       console.error('Erro ao calcular estatísticas do paciente:', error);
       throw error;
-
-
-  },    }    }
+    }
   },
 };
