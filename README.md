@@ -395,4 +395,3 @@ Desenvolvido por
 
 Lucas Yuji - Rm99757
 Enzo Luiz Goulart - Rm99666
-Joao Pedro Cruz - Rm98650
