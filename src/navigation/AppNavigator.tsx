@@ -6,7 +6,7 @@ import { RootStackParamList } from "../types/navigation";
 
 // Importação das telas (screens) utilizadas nas rotas
 import LoginScreen from "../screens/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen";
+import RegisterScreen from "../screens/RegisterScreen/index";
 import HomeScreen from "../screens/HomeScreen";
 import CreateAppointmentScreen from "../screens/CreateAppointmentScreen/index";
 import ProfileScreen from "../screens/ProfileScreen/index";
