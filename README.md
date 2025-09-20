@@ -14,6 +14,7 @@ Este é um aplicativo mobile desenvolvido em React Native para agendamento de co
 ### Funcionalidades Principais
 
 #### 🏥 Sistema de Agendamento
+
 - Visualização de médicos disponíveis por especialidade
 - Agendamento de consultas com seleção de data e horário
 - Gerenciamento completo de consultas (visualizar, confirmar, cancelar)
@@ -21,18 +22,21 @@ Este é um aplicativo mobile desenvolvido em React Native para agendamento de co
 - Interface intuitiva para seleção de médicos e horários
 
 #### 👤 Gerenciamento de Usuários
+
 - Sistema de autenticação com três tipos de usuário (Admin, Médico, Paciente)
 - Edição de perfil com atualização de dados em tempo real
 - Perfis personalizados por tipo de usuário
 - Avatars e informações detalhadas
 
 #### 📊 Dashboard com Estatísticas
+
 - Estatísticas detalhadas para administradores (consultas totais, especialidades mais procuradas)
 - Dashboard personalizado para médicos (pacientes atendidos, consultas confirmadas)
 - Visão geral para pacientes (histórico de consultas, médicos consultados)
 - Gráficos e métricas em tempo real
 
 #### 🔔 Sistema de Notificações
+
 - Notificações push para confirmação/cancelamento de consultas
 - Lembretes automáticos de consultas
 - Centro de notificações com histórico completo
@@ -40,12 +44,14 @@ Este é um aplicativo mobile desenvolvido em React Native para agendamento de co
 - Notificações categorizadas por tipo
 
 #### ⚙️ Configurações Avançadas
+
 - Configurações personalizáveis do aplicativo
 - Sistema de backup e restore de dados
 - Gerenciamento de cache para melhor performance
 - Limpeza de dados e configurações de privacidade
 
 #### 🎨 Interface e Experiência do Usuário
+
 - Design moderno e responsivo com Material Design
 - Tema consistente com paleta de cores profissional
 - Navegação fluida entre telas
@@ -53,6 +59,7 @@ Este é um aplicativo mobile desenvolvido em React Native para agendamento de co
 - Feedback visual para todas as ações
 
 #### 💾 Armazenamento Inteligente
+
 - Sistema de cache em memória para melhor performance
 - Persistência local com AsyncStorage
 - Validação de dados e integridade
@@ -61,22 +68,26 @@ Este é um aplicativo mobile desenvolvido em React Native para agendamento de co
 ## Tecnologias Utilizadas
 
 ### 📱 Core
+
 - [React Native](https://reactnative.dev/) 0.76.7 - Framework para desenvolvimento mobile
 - [TypeScript](https://www.typescriptlang.org/) 5.3.3 - Superset JavaScript com tipagem estática
 - [Expo](https://expo.dev/) 52.0.39 - Plataforma para desenvolvimento React Native
 
 ### 🎨 Interface e Navegação
+
 - [Styled Components](https://styled-components.com/) 6.1.16 - Estilização com CSS-in-JS
 - [React Navigation](https://reactnavigation.org/) 6.1.9 - Navegação entre telas
 - [React Native Elements](https://reactnativeelements.com/) 3.4.3 - Biblioteca de componentes UI
 - [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons) - Ícones vetoriais
 
 ### 💾 Armazenamento e Dados
+
 - [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) 2.1.2 - Armazenamento local
 - [Axios](https://axios-http.com/) 1.8.4 - Cliente HTTP
 - [JWT Decode](https://github.com/auth0/jwt-decode) 4.0.0 - Decodificação de tokens JWT
 
 ### 🛠️ Ferramentas de Desenvolvimento
+
 - [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/) 2.24.0 - Gestos nativos
 - [React Native Screens](https://github.com/software-mansion/react-native-screens) 4.9.2 - Otimização de telas
 - [React Native Safe Area Context](https://github.com/th3rdwave/react-native-safe-area-context) 5.3.0 - Área segura
@@ -84,6 +95,7 @@ Este é um aplicativo mobile desenvolvido em React Native para agendamento de co
 ## Pré-requisitos
 
 Antes de começar, você precisa ter instalado em sua máquina:
+
 - [Node.js](https://nodejs.org/) (versão 18 ou superior)
 - [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
 - [Expo CLI](https://docs.expo.dev/get-started/installation/) (recomendado)
@@ -94,12 +106,14 @@ Antes de começar, você precisa ter instalado em sua máquina:
 ## Instalação
 
 1. Clone o repositório:
+
 ```bash
 git clone https://github.com/seu-usuario/marcacaoDeConsultasMedicas.git
 cd marcacaoDeConsultasMedicas
 ```
 
 2. Instale as dependências:
+
 ```bash
 npm install
 # ou
@@ -107,6 +121,7 @@ yarn install
 ```
 
 3. Instale as dependências do iOS (apenas em macOS):
+
 ```bash
 cd ios
 pod install
@@ -114,6 +129,7 @@ cd ..
 ```
 
 4. Inicie o aplicativo:
+
 ```bash
 # Método recomendado (Expo)
 npm start
@@ -205,6 +221,7 @@ marcacaoDeConsultasMedicas/
 ## Funcionalidades Detalhadas
 
 ### 🏥 Sistema de Agendamento Avançado
+
 - **Seleção Inteligente de Médicos**: Filtro por especialidade com informações detalhadas
 - **Calendário de Disponibilidade**: Interface visual para seleção de datas e horários
 - **Validação em Tempo Real**: Verificação automática de conflitos de horários
@@ -212,36 +229,42 @@ marcacaoDeConsultasMedicas/
 - **Confirmação Visual**: Feedback imediato após agendamento
 
 ### 👨‍⚕️ Dashboard para Médicos
+
 - **Gestão de Consultas**: Visualização e gerenciamento de todas as consultas
 - **Estatísticas Personalizadas**: Métricas de pacientes atendidos e consultas por período
 - **Ações Rápidas**: Confirmação e cancelamento com modal informativo
 - **Histórico Detalhado**: Acesso ao histórico completo de atendimentos
 
 ### 👤 Dashboard para Pacientes
+
 - **Histórico de Consultas**: Visualização completa de consultas passadas e futuras
 - **Estatísticas Pessoais**: Acompanhamento de especialidades consultadas
 - **Agendamento Rápido**: Acesso direto para nova consulta
 - **Notificações Integradas**: Alertas sobre status das consultas
 
 ### 🏢 Painel Administrativo
+
 - **Visão Geral Completa**: Estatísticas gerais do sistema
 - **Especialidades em Destaque**: Ranking das especialidades mais procuradas
 - **Métricas Avançadas**: Análise de performance e utilização
 - **Gerenciamento Total**: Controle de todas as consultas e usuários
 
 ### 🔔 Sistema de Notificações Inteligente
+
 - **Notificações Contextuais**: Diferentes tipos baseados na ação (confirmação, cancelamento, lembrete)
 - **Centro de Notificações**: Interface dedicada para gerenciar todas as notificações
 - **Indicadores Visuais**: Contador de notificações não lidas no header
 - **Persistência**: Histórico completo de notificações
 
 ### ⚙️ Configurações e Backup
+
 - **Configurações Personalizáveis**: Controle de notificações e preferências
 - **Sistema de Backup**: Criação e compartilhamento de backups completos
 - **Gerenciamento de Cache**: Otimização de performance com controle manual
 - **Informações do Sistema**: Monitoramento de uso de armazenamento
 
 ### 🎨 Design System Profissional
+
 - **Componentes Modulares**: Biblioteca de componentes reutilizáveis
 - **Tema Consistente**: Paleta de cores e tipografia padronizada
 - **Responsividade**: Design adaptativo para diferentes tamanhos de tela
@@ -252,66 +275,78 @@ marcacaoDeConsultasMedicas/
 ### ✅ Funcionalidades Implementadas:
 
 #### 1. 📝 Edição de Perfil Dinâmica
+
 - Tela dedicada para edição de informações do usuário
 - Validação em tempo real dos dados inseridos
 - Atualização automática em todos os contextos da aplicação
 - Campos específicos por tipo de usuário (especialidade para médicos)
 
 **Arquivos criados/modificados:**
+
 - `src/screens/EditProfileScreen.tsx` - Nova tela de edição
 - `src/contexts/AuthContext.tsx` - Adicionada função `updateUser`
 - `src/types/auth.ts` - Atualização da interface do contexto
 
 #### 2. 📊 Sistema de Estatísticas Avançado
+
 - Cards interativos com métricas em tempo real
 - Estatísticas personalizadas por tipo de usuário
 - Ranking de especialidades mais procuradas
 - Percentuais de status das consultas
 
 **Arquivos criados/modificados:**
+
 - `src/components/StatisticsCard.tsx` - Componente de card de estatísticas
 - `src/services/statistics.ts` - Serviço completo de cálculo de estatísticas
 - `src/screens/AdminDashboardScreen.tsx` - Integração das estatísticas
 - `src/screens/DoctorDashboardScreen.tsx` - Dashboard do médico com métricas
 
 #### 3. 🔔 Sistema de Notificações Completo
+
 - Notificações push para eventos importantes
 - Centro de notificações com histórico
 - Contador visual de notificações não lidas
 - Categorização por tipo de evento
 
 **Arquivos criados/modificados:**
+
 - `src/services/notifications.ts` - Serviço completo de notificações
 - `src/screens/NotificationsScreen.tsx` - Central de notificações
 - `src/components/NotificationBell.tsx` - Sino de notificações no header
 - `src/components/Header.tsx` - Integração do sino
 
 #### 4. ✅ Sistema de Confirmação/Cancelamento Aprimorado
+
 - Modal informativo para ações de consulta
 - Campo opcional para motivo do cancelamento
 - Feedback visual detalhado
 - Notificações automáticas para pacientes
 
 **Arquivos criados/modificados:**
+
 - `src/components/AppointmentActionModal.tsx` - Modal de ações
 - `src/screens/DoctorDashboardScreen.tsx` - Integração do novo modal
 
 #### 5. 💾 Sistema de Armazenamento Inteligente
+
 - Cache em memória para melhor performance
 - Validação automática de dados
 - Sistema de backup e restore
 - Monitoramento de uso de armazenamento
 
 **Arquivos criados/modificados:**
+
 - `src/services/storage.ts` - Serviço centralizado de armazenamento
 - `src/screens/SettingsScreen.tsx` - Tela de configurações avançadas
 
 #### 6. 🧭 Navegação e Acessibilidade Refinadas
+
 - Rotas atualizadas para todas as novas telas
 - Navegação fluida entre funcionalidades
 - Acesso fácil às configurações
 
 **Arquivos modificados:**
+
 - `src/types/navigation.ts` - Novas rotas adicionadas
 - `src/navigation/AppNavigator.tsx` - Configuração das novas telas
 - Dashboards atualizados com novos botões de acesso
@@ -356,4 +391,8 @@ Se você encontrar algum problema ou tiver sugestões, por favor abra uma issue 
 
 ---
 
-Desenvolvido por Professor Hete Caetano e compartilhado com alunos de TDS 
+Desenvolvido por
+
+Lucas Yuji - Rm99757
+Enzo Luiz Goulart - Rm99666
+Joao Pedro Cruz - Rm98650
